@@ -2,6 +2,10 @@
   "levels": [
     { "fieldSize": 4, "cellCount": 3 },
     { "fieldSize": 5, "cellCount": 4 },
-    { "fieldSize": 6, "cellCount": 5 }
+    { "fieldSize": 6, "cellCount": 5 },
+    { "fieldSize": 6, "cellCount": 5 },
+    { "fieldSize": 7, "cellCount": 6 },
+    { "fieldSize": 7, "cellCount": 6 },
+    { "fieldSize": 8, "cellCount": 7 }
   ]
 }

@@ -1,9 +1,14 @@
 import React, { PureComponent } from 'react';
 import logo from 'logo.svg';
 import {levels as config} from 'config/memory-mosaic'
-console.log(config);
+
+import Cell from './components/Cell'
+import Row from './components/Row'
+
+
 const CELL_COUNT = 'cellCount';
 const FIELD_SIZE = 'fieldSize';
+
 
 class MemoryMosaic extends PureComponent {
   state = {
@@ -50,14 +55,16 @@ class MemoryMosaic extends PureComponent {
     const { onCellClick } = this
 
     return field.map((e, x) =>
-      (<div className='row' key={x}>
+      (<Row height={field.length} keyValue={x}>
         {e.map((element, y) => (
-          <div
+          <Cell 
+            keyValue={x + y + 1}
+            size={field.length}
             onClick={!visible && onCellClick(x, y)}
-            className={`col ${(visible && element) || hash[String(x) + y] ? 'active' : ''}`} key={`col-${y}`}>
-          </div>
+            highlighted={(visible && element) || hash[String(x) + y]}
+          />
         ))}
-      </div>)
+      </Row>)
     )
   }
 
