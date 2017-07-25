@@ -53,7 +53,7 @@ class MemoryMosaic extends PureComponent {
       (<div className='row' key={x}>
         {e.map((element, y) => (
           <div
-            onClick={onCellClick(x, y)}
+            onClick={!visible && onCellClick(x, y)}
             className={`col ${(visible && element) || hash[String(x) + y] ? 'active' : ''}`} key={`col-${y}`}>
           </div>
         ))}
