@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
 class App extends Component {
-  
+
   fieldSize = 4
   state = {
     visible: false,
@@ -14,7 +14,7 @@ class App extends Component {
   onColClick = (x, y) => () => {
     const {hash} = this.state
     const key = [String(x) + y]
-    if (key in hash) 
+    if (key in hash)
       this.setState((state) => ({hash: {...state.hash, [key]: true}} ))
     else
       console.log('looser')
@@ -23,7 +23,7 @@ class App extends Component {
   drawField = (size) => {
     const { visible, hash, field } = this.state
     const {onColClick} = this
- 
+
 
 
     // this.setState({hash})
@@ -32,7 +32,7 @@ class App extends Component {
     return field.map((e, x) => <div className='row' key={x}>
           {
             e.map((element, y) => (
-              <div 
+              <div
                 onClick={onColClick(x, y)}
                 className={`col ${(visible && element) || hash[String(x) + y] ? 'active' : ''}`} key={`col-${y}`}>
                 {element}
@@ -55,9 +55,9 @@ class App extends Component {
       const x = ~~(Math.random() * 3)
       const y = ~~(Math.random() * 3)
       console.log(x, y)
-      field[x][y] = 1  
+      field[x][y] = 1
       if (!(String(x) + y in hash)) {
-        hash[String(x) + y] = 0    
+        hash[String(x) + y] = 0
         i++
       }
       if (i > 10) break
@@ -66,7 +66,7 @@ class App extends Component {
     this.setState({field, hash, visible: true})
     setTimeout(() => this.setState({visible: false}), 1500)
   }
-  
+
 
   render() {
     return (
