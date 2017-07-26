@@ -10,6 +10,8 @@ import './style/index.scss'
 const CELL_COUNT = 'cellCount';
 const FIELD_SIZE = 'fieldSize';
 
+const getHashKey = (x, y) => String(x) + y
+
 
 class MemoryMosaic extends PureComponent {
   state = {
@@ -60,20 +62,21 @@ class MemoryMosaic extends PureComponent {
     const { visible, hash, field, currentLevel, guessedCells, lastGuessedCell } = this.state
     const { onCellClick } = this
 
-    // const isLast = config[currentLevel][CELL_COUNT] === guessedCells
 
     return field.map((e, x) =>
       (<Row height={field.length} keyValue={x}>
-        {e.map((element, y) => (
-          <Cell
-            keyValue={x + y + 1}
-            size={field.length}
-            last={hash[String(x) + y] === 2}
-            onClick={!visible && onCellClick(x, y)}
-            highlighted={(visible && element) || hash[String(x) + y]}
-            e={hash[String(x) + y]}
-          />
-        )
+        {e.map((element, y) => {
+          const hashKey = getHashKey(x, y)
+          return (
+            <Cell
+              keyValue={x + y + 1}
+              size={field.length}
+              last={hash[hashKey] === 2}
+              onClick={!visible && onCellClick(x, y)}
+              highlighted={(visible && element) || hash[hashKey]}
+            />
+          )
+        }
       )}
       </Row>)
     )
