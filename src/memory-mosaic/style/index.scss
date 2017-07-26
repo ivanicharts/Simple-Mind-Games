@@ -1,0 +1,29 @@
+$border-color: #2d2d2d;
+$background-color: #3B3251;
+$white: #fff;
+
+.memory-mosaic {
+
+  color: $white;
+
+  background:  $background-color;
+  padding: 30px;
+  // height: 100%;
+  // display: flex;
+
+  .container {
+    max-width: 375px;
+    height: 375px;
+    margin: 30px auto;
+  }
+
+  .cell {
+    border: 1px solid $background-color;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    // padding: 1px;
+  }
+}

@@ -1,16 +1,17 @@
 import React from 'react';
+import Icon from 'react-fontawesome';
+console.log('awesome', Icon);
+export default ({onClick, highlighted=false, size=4, keyValue, last}) => (
+  <div
+    key={keyValue}
+    className='cell'
+    style={{
+      minWidth: `${100 / size}%`,
+      minHeight: `${100 / size}%`,
+      background: highlighted ? '#4EE9D9' : '#fff'
+    }}
+    onClick={onClick}>
+      {last && <Icon name='check' />}
 
-export default ({onClick, highlighted=false, size=4, keyValue}) => (
-	<div
-		key={keyValue} 
-		style={{
-			border: '1px solid #2d2d2d',
-	    minWidth: `${100 / size}%`,
-	    minHeight: `${100 / size}%`,
-	    background: highlighted ? '#1abc9c' : '#ecf0f1',
-	    cursor: 'pointer'
-		}}
-		onClick={onClick}>
-		
-	</div>
-)
+  </div>
+);

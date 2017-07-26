@@ -5,6 +5,7 @@ import {levels as config} from 'config/memory-mosaic'
 import Cell from './components/Cell'
 import Row from './components/Row'
 
+import './style/index.scss'
 
 const CELL_COUNT = 'cellCount';
 const FIELD_SIZE = 'fieldSize';
@@ -16,13 +17,14 @@ class MemoryMosaic extends PureComponent {
     hash: {},
     field: [],
     currentLevel: 0,
-    guessedCells: 0
+    guessedCells: 0,
+    lastGuessedCell: 0
   }
 
   // onSuccessCellClick = (state) => ({hash: {...state.hash, [key]: true}, guessedCells: state.guessedCells + 1 })
 
   checkLevelCompletition = () =>
-    (console.log(this.state.guessedCells, config[this.state.currentLevel][CELL_COUNT]), (this.state.guessedCells === config[this.state.currentLevel][CELL_COUNT] && this.startNewLevel()))
+    ((this.state.guessedCells === config[this.state.currentLevel][CELL_COUNT]) && setTimeout(this.startNewLevel, 1000))
 
   // checkLevelCompletition = (state) => console.log(state);
 
@@ -40,7 +42,7 @@ class MemoryMosaic extends PureComponent {
 
     if (key in hash) {
       this.setState(
-        (state) => ({hash: {...state.hash, [key]: true}, guessedCells: state.guessedCells + 1 }),
+        (state) => ({hash: {...state.hash, [key]: true}, guessedCells: state.guessedCells + 1, lastGuessedCell: String(key)}),
         checkLevelCompletition
       )
 
@@ -51,19 +53,23 @@ class MemoryMosaic extends PureComponent {
   gameOver = () => console.log('looser')
 
   drawField = () => {
-    const { visible, hash, field, currentLevel } = this.state
+    const { visible, hash, field, currentLevel, guessedCells, lastGuessedCell } = this.state
     const { onCellClick } = this
+
+    const isLast = config[currentLevel][CELL_COUNT] === guessedCells
 
     return field.map((e, x) =>
       (<Row height={field.length} keyValue={x}>
         {e.map((element, y) => (
-          <Cell 
+          <Cell
             keyValue={x + y + 1}
             size={field.length}
+            last={isLast && lastGuessedCell === (String(x) + y)}
             onClick={!visible && onCellClick(x, y)}
             highlighted={(visible && element) || hash[String(x) + y]}
           />
-        ))}
+        )
+      )}
       </Row>)
     )
   }
@@ -99,17 +105,19 @@ class MemoryMosaic extends PureComponent {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className='App'>
+        <div className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
           <h2>Current level {this.state.currentLevel}</h2>
         </div>
-        <div className="container">
-          {this.drawField()}
+        <div className='memory-mosaic'>
+           <div className='container'>
+            {this.drawField()}
+          </div>
+          <p onClick={this.initGame()}>
+            start
+          </p>
         </div>
-        <p onClick={this.initGame()}>
-          start
-        </p>
       </div>
     );
   }
