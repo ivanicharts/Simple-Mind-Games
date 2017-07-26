@@ -31,19 +31,19 @@ class MemoryMosaic extends PureComponent {
   // checkLevelCompletition = (state) => console.log(state);
 
   startNewLevel = () => (
+    this.initGame(this.state.currentLevel + 1)(),
     this.setState(
-      (state) => ({currentLevel: state.currentLevel + 1}),
-      this.initGame()
+      (state) => (console.log('state', state), ({currentLevel: state.currentLevel + 1}))
     )
   )
 
   onCellClick = (x, y) => () => {
     const { hash } = this.state
-    const { gameOver, onSuccessCellClick, checkLevelCompletition } = this
+    const { finishGame, onSuccessCellClick, checkLevelCompletition } = this
     const key = [String(x) + y]
 
     if (key in hash) {
-      this.setState(
+      hash[key] === 0 && this.setState(
         (state) => ({
           hash: {...state.hash, [key]: (state.guessedCells + 1) === config[this.state.currentLevel][CELL_COUNT] ? 2 : true},
           guessedCells: state.guessedCells + 1,
@@ -52,28 +52,41 @@ class MemoryMosaic extends PureComponent {
         checkLevelCompletition
       )
 
-    } else
-      gameOver()
+    } else {
+      this.setState((prev) => ({hash: {...prev.hash, [key]: 3}}))
+      finishGame()
+    }
   }
 
-  gameOver = () => console.log('looser')
+  finishGame = () => {
+    console.log('looser');
+    this.setState({visible: true})
+    setTimeout(this.initGame(this.state.currentLevel), 1000)
+  }
+
+  foo = () => {
+    var a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    var [a1, a2] = a.reduce((xs, s) => s % 2 ? (xs[0].push(s), xs) : (xs[1].push(s), xs) ,[[], []])
+  }
 
   drawField = () => {
     const { visible, hash, field, currentLevel, guessedCells, lastGuessedCell } = this.state
     const { onCellClick } = this
 
-
+    // REPLACE 2, 3, truef with CONSTANTS
     return field.map((e, x) =>
       (<Row height={field.length} keyValue={x}>
         {e.map((element, y) => {
           const hashKey = getHashKey(x, y)
+          const elem = hash[hashKey]
           return (
             <Cell
               keyValue={x + y + 1}
               size={field.length}
-              last={hash[hashKey] === 2}
+              last={elem === 2}
+              wrong={elem === 3}
               onClick={!visible && onCellClick(x, y)}
-              highlighted={(visible && element) || hash[hashKey]}
+              highlighted={(visible && element) || elem && elem !== 3}
             />
           )
         }
@@ -82,8 +95,9 @@ class MemoryMosaic extends PureComponent {
     )
   }
 
-  initGame = () => () => {
-    const { visible, currentLevel } = this.state
+  startGame = () => this.setState({currentLevel: 0}, this.initGame(0))
+  initGame = (currentLevel) => () => {
+    const { visible } = this.state
     const hash = {}
     const size = config[currentLevel][FIELD_SIZE]
     const field = new Array(size).fill(0)
@@ -91,7 +105,7 @@ class MemoryMosaic extends PureComponent {
 
     field.forEach((e, i, a) => (field[i] = new Array(size).fill(0)))
 
-    console.log(field[0] === field[1])
+    console.log('init new game')
 
     let i = 0
     while (i < cellCount) {
@@ -122,7 +136,7 @@ class MemoryMosaic extends PureComponent {
            <div className='container'>
             {this.drawField()}
           </div>
-          <p onClick={this.initGame()}>
+          <p onClick={this.startGame}>
             start
           </p>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default ({keyValue, height, children}) => ( console.log('children', children),
-	<div 
+export default ({keyValue, height, children}) => (
+	<div
 		style={{
 			display: 'flex',
   		justifyContent: 'center',
