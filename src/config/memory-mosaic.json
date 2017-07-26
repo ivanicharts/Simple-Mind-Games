@@ -1,4 +1,5 @@
 {
+  "lives": 3,
   "levels": [
     { "fieldSize": 4, "cellCount": 3 },
     { "fieldSize": 5, "cellCount": 4 },

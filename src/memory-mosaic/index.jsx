@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import logo from 'logo.svg';
-import {levels as config} from 'config/memory-mosaic'
+import config, {levels} from 'config/memory-mosaic'
 
 import Cell from './components/Cell'
 import Row from './components/Row'
+import Lives from './components/Lives'
 
 import './style/index.scss'
 
@@ -16,6 +17,7 @@ const getHashKey = (x, y) => String(x) + y
 class MemoryMosaic extends PureComponent {
   state = {
     visible: false,
+    lives: config.lives,
     hash: {},
     field: [],
     currentLevel: 0,
@@ -26,7 +28,7 @@ class MemoryMosaic extends PureComponent {
   // onSuccessCellClick = (state) => ({hash: {...state.hash, [key]: true}, guessedCells: state.guessedCells + 1 })
 
   checkLevelCompletition = () =>
-    ((this.state.guessedCells === config[this.state.currentLevel][CELL_COUNT]) && setTimeout(this.startNewLevel, 1000))
+    ((this.state.guessedCells === levels[this.state.currentLevel][CELL_COUNT]) && setTimeout(this.startNewLevel, 1000))
 
   // checkLevelCompletition = (state) => console.log(state);
 
@@ -45,7 +47,7 @@ class MemoryMosaic extends PureComponent {
     if (key in hash) {
       hash[key] === 0 && this.setState(
         (state) => ({
-          hash: {...state.hash, [key]: (state.guessedCells + 1) === config[this.state.currentLevel][CELL_COUNT] ? 2 : true},
+          hash: {...state.hash, [key]: (state.guessedCells + 1) === levels[this.state.currentLevel][CELL_COUNT] ? 2 : true},
           guessedCells: state.guessedCells + 1,
           lastGuessedCell: String(key)
         }),
@@ -60,7 +62,7 @@ class MemoryMosaic extends PureComponent {
 
   finishGame = () => {
     console.log('looser');
-    this.setState({visible: true})
+    this.setState(prev => ({visible: true, lives: prev.lives - 1}))
     setTimeout(this.initGame(this.state.currentLevel), 1000)
   }
 
@@ -95,13 +97,13 @@ class MemoryMosaic extends PureComponent {
     )
   }
 
-  startGame = () => this.setState({currentLevel: 0}, this.initGame(0))
+  startGame = () => this.setState({currentLevel: 0, lives: config.lives}, this.initGame(0))
   initGame = (currentLevel) => () => {
     const { visible } = this.state
     const hash = {}
-    const size = config[currentLevel][FIELD_SIZE]
+    const size = levels[currentLevel][FIELD_SIZE]
     const field = new Array(size).fill(0)
-    const cellCount = config[currentLevel][CELL_COUNT]
+    const cellCount = levels[currentLevel][CELL_COUNT]
 
     field.forEach((e, i, a) => (field[i] = new Array(size).fill(0)))
 
@@ -133,12 +135,15 @@ class MemoryMosaic extends PureComponent {
           <h2>Current level {this.state.currentLevel}</h2>
         </div>
         <div className='memory-mosaic'>
-           <div className='container'>
-            {this.drawField()}
-          </div>
-          <p onClick={this.startGame}>
-            start
-          </p>
+          {!!this.state.field.length &&
+            <div className='game-container'>
+              <Lives count={this.state.lives} />
+              <div className='field'>
+                {this.drawField()}
+              </div>
+            </div>
+          }
+          <p onClick={this.startGame}>New Game</p>
         </div>
       </div>
     );

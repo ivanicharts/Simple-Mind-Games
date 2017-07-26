@@ -1,20 +1,21 @@
 $border-color: #2d2d2d;
 $background-color: #3B3251;
 $white: #fff;
+$pink: #FD297D;
 
 .memory-mosaic {
-
   color: $white;
-
   background:  $background-color;
   padding: 30px 10px;
-  // height: 100%;
-  // display: flex;
 
-  .container {
+  .game-container {
     max-width: 375px;
+    margin: auto;
+  }
+
+  .field {
     height: 375px;
-    margin: 30px auto;
+    margin: 7px auto 50px;
   }
 
   .cell {
@@ -25,5 +26,15 @@ $white: #fff;
     align-items: center;
     font-size: 3em;
     // padding: 1px;
+  }
+
+  .lives {
+    color: $pink;
+    font-size: 1em;
+    text-align: right;
+
+    .fa-heart {
+      margin-left: 5px;
+    }
   }
 }
