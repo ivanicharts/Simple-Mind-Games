@@ -137,7 +137,7 @@ class MemoryMosaic extends PureComponent {
         <div className='memory-mosaic'>
           {!!this.state.field.length &&
             <div className='game-container'>
-              <Lives count={this.state.lives} />
+              <Lives count={config.lives} alive={this.state.lives} />
               <div className='field'>
                 {this.drawField()}
               </div>

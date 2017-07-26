@@ -36,5 +36,18 @@ $pink: #FD297D;
     .fa-heart {
       margin-left: 5px;
     }
+
+    .hidden {
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: .3s;
+      animation: disappearing .8s;
+    }
+  }
+
+  @keyframes disappearing {
+    0%    {transform: translateY(0); opacity: 1;}
+    75%   {transform: translateY(-10px); opacity: .6;}
+    100%  {transform: translateY(-14px); opacity: 0;}
   }
 }

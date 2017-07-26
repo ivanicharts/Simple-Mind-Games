@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from 'react-fontawesome';
+import cn from 'classnames';
 
 const createArray = (len, fn) => {
   const arr = [];
@@ -12,10 +13,13 @@ const createArray = (len, fn) => {
 
 // add animation
 
-export default ({count}) => (
+export default ({count, alive}) => (
   <div className='lives'>
     {createArray(count, (i) => (
-      <Icon key={i} name='heart'/>
+      <Icon 
+        className={cn({hidden: i < count - alive})}
+        key={i} 
+        name='heart'/>
     ))}
   </div>
 );
