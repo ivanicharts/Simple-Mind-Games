@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from 'react-fontawesome';
-console.log('awesome', Icon);
-export default ({onClick, highlighted=false, size=4, keyValue, last}) => (
+
+export default ({onClick, highlighted=false, size=4, keyValue, last, e}) => (
   <div
     key={keyValue}
     className='cell'
@@ -12,6 +12,5 @@ export default ({onClick, highlighted=false, size=4, keyValue, last}) => (
     }}
     onClick={onClick}>
       {last && <Icon name='check' />}
-
   </div>
 );

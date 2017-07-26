@@ -42,7 +42,11 @@ class MemoryMosaic extends PureComponent {
 
     if (key in hash) {
       this.setState(
-        (state) => ({hash: {...state.hash, [key]: true}, guessedCells: state.guessedCells + 1, lastGuessedCell: String(key)}),
+        (state) => ({
+          hash: {...state.hash, [key]: (state.guessedCells + 1) === config[this.state.currentLevel][CELL_COUNT] ? 2 : true},
+          guessedCells: state.guessedCells + 1,
+          lastGuessedCell: String(key)
+        }),
         checkLevelCompletition
       )
 
@@ -56,7 +60,7 @@ class MemoryMosaic extends PureComponent {
     const { visible, hash, field, currentLevel, guessedCells, lastGuessedCell } = this.state
     const { onCellClick } = this
 
-    const isLast = config[currentLevel][CELL_COUNT] === guessedCells
+    // const isLast = config[currentLevel][CELL_COUNT] === guessedCells
 
     return field.map((e, x) =>
       (<Row height={field.length} keyValue={x}>
@@ -64,9 +68,10 @@ class MemoryMosaic extends PureComponent {
           <Cell
             keyValue={x + y + 1}
             size={field.length}
-            last={isLast && lastGuessedCell === (String(x) + y)}
+            last={hash[String(x) + y] === 2}
             onClick={!visible && onCellClick(x, y)}
             highlighted={(visible && element) || hash[String(x) + y]}
+            e={hash[String(x) + y]}
           />
         )
       )}
