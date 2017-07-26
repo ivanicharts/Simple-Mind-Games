@@ -21,24 +21,6 @@
 
 
 
-.row {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-}
-
-.col {
-    border: 1px solid #2d2d2d;
-    min-width: 50px;
-    min-height: 50px;
-    background: #ecf0f1;
-    cursor: pointer;
-  }
-
-  .active {
-    background: #1abc9c;
-  }
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

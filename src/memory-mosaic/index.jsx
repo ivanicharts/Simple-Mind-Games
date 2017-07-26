@@ -5,6 +5,7 @@ import config, {levels} from 'config/memory-mosaic'
 import Cell from './components/Cell'
 import Row from './components/Row'
 import Lives from './components/Lives'
+import Spinner from 'shared/icons/Spinner'
 
 import './style/index.scss'
 
@@ -22,7 +23,8 @@ class MemoryMosaic extends PureComponent {
     field: [],
     currentLevel: 0,
     guessedCells: 0,
-    lastGuessedCell: 0
+    lastGuessedCell: 0,
+    ready: true
   }
 
   // onSuccessCellClick = (state) => ({hash: {...state.hash, [key]: true}, guessedCells: state.guessedCells + 1 })
@@ -137,13 +139,24 @@ class MemoryMosaic extends PureComponent {
         <div className='memory-mosaic'>
           {!!this.state.field.length &&
             <div className='game-container'>
-              <Lives count={config.lives} alive={this.state.lives} />
-              <div className='field'>
-                {this.drawField()}
-              </div>
-            </div>
+              
+              {
+                this.state.ready ?
+                <Spinner />
+                :
+                <div>
+                  <Lives count={config.lives} alive={this.state.lives} />
+                  <div className='field'>
+                    {this.drawField()}
+                  </div>
+                </div>
+              }
+            </div>    
+
+              
           }
           <p onClick={this.startGame}>New Game</p>
+
         </div>
       </div>
     );

@@ -19,13 +19,16 @@ $pink: #FD297D;
   }
 
   .cell {
-    border: 1px solid $background-color;
+    outline: 1px solid $background-color;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3em;
     // padding: 1px;
+    &:hover, &:focus, &:active {
+      background: $white;
+    }
   }
 
   .lives {
