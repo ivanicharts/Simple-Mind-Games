@@ -24,7 +24,8 @@ class MemoryMosaic extends PureComponent {
     currentLevel: 0,
     guessedCells: 0,
     lastGuessedCell: 0,
-    ready: true
+    ready: true,
+    gameIsLost: false
   }
 
   // onSuccessCellClick = (state) => ({hash: {...state.hash, [key]: true}, guessedCells: state.guessedCells + 1 })
@@ -43,7 +44,7 @@ class MemoryMosaic extends PureComponent {
 
   onCellClick = (x, y) => () => {
     const { hash } = this.state
-    const { finishGame, onSuccessCellClick, checkLevelCompletition } = this
+    const { finishRound, onSuccessCellClick, checkLevelCompletition } = this
     const key = [String(x) + y]
 
     if (key in hash) {
@@ -58,20 +59,20 @@ class MemoryMosaic extends PureComponent {
 
     } else {
       this.setState((prev) => ({hash: {...prev.hash, [key]: 3}}))
-      finishGame()
+      finishRound()
     }
   }
 
-  finishGame = () => {
+  finishGame = () => this.setState({gameIsLost: true, field: []})
+
+  finishRound = () => {
     console.log('looser');
-    this.setState(prev => ({visible: true, lives: prev.lives - 1}))
-    setTimeout(this.initGame(this.state.currentLevel), 1000)
+    this.setState(prev => ({visible: true, lives: prev.lives - 1}), () => (
+        setTimeout(this.state.lives > 0 ? this.initGame(this.state.currentLevel) : this.finishGame, 1000)
+    ))
+    // setTimeout(this.initGame(this.state.currentLevel), 1000)
   }
 
-  foo = () => {
-    var a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    var [a1, a2] = a.reduce((xs, s) => s % 2 ? (xs[0].push(s), xs) : (xs[1].push(s), xs) ,[[], []])
-  }
 
   drawField = () => {
     const { visible, hash, field, currentLevel, guessedCells, lastGuessedCell } = this.state
@@ -138,7 +139,8 @@ class MemoryMosaic extends PureComponent {
           <h2>Current level {this.state.currentLevel}</h2>
         </div>
         <div className='memory-mosaic'>
-          {!!this.state.field.length &&
+
+          {!!this.state.field.length ?
             <div className='game-container'>
               {
                 this.state.ready &&
@@ -154,8 +156,9 @@ class MemoryMosaic extends PureComponent {
                   </div>
                 </div>
             </div>
+            :
+            <p className='cursor-pointer' onClick={this.startGame}>New Game</p>
           }
-          <p className='cursor-pointer' onClick={this.startGame}>New Game</p>
 
 
         </div>
