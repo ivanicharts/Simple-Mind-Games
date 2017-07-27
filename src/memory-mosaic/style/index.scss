@@ -1,5 +1,6 @@
 $border-color: #2d2d2d;
 $background-color: #3B3251;
+// #2F273E
 $white: #fff;
 $pink: #FD297D;
 
@@ -11,6 +12,7 @@ $pink: #FD297D;
   .game-container {
     max-width: 375px;
     margin: auto;
+    position: relative;
   }
 
   .field {
@@ -45,6 +47,25 @@ $pink: #FD297D;
       transform: translateY(-10px);
       transition: .3s;
       animation: disappearing .8s;
+    }
+  }
+
+  .preloader {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $background-color;
+
+    .loader {
+      margin-bottom: 20px;
     }
   }
 

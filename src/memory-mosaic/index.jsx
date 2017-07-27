@@ -125,8 +125,9 @@ class MemoryMosaic extends PureComponent {
     }
 
     console.log(field, hash);
-    this.setState({field, hash, visible: true, guessedCells: 0})
-    setTimeout(() => this.setState({visible: false}), 1500)
+    this.setState({field, hash, visible: true, guessedCells: 0, ready: true})
+    setTimeout(() => this.setState({ready: false}), config.preloadTime * 1000 + 100)
+    setTimeout(() => this.setState({visible: false}), config.preloadTime * 1000 + config.visibleTime * 1000)
   }
 
   render() {
@@ -139,23 +140,23 @@ class MemoryMosaic extends PureComponent {
         <div className='memory-mosaic'>
           {!!this.state.field.length &&
             <div className='game-container'>
-              
               {
-                this.state.ready ?
-                <Spinner />
-                :
+                this.state.ready &&
+                <div className='preloader'>
+                  <Spinner />
+                  <p>Ready ?</p>
+                </div>
+              }
                 <div>
                   <Lives count={config.lives} alive={this.state.lives} />
                   <div className='field'>
                     {this.drawField()}
                   </div>
                 </div>
-              }
-            </div>    
-
-              
+            </div>
           }
-          <p onClick={this.startGame}>New Game</p>
+          <p className='cursor-pointer' onClick={this.startGame}>New Game</p>
+
 
         </div>
       </div>
