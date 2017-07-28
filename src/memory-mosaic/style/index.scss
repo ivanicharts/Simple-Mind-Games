@@ -1,6 +1,8 @@
 $border-color: #2d2d2d;
-$background-color: #3B3251;
-// #2F273E
+// $background-color: #3B3251;
+$background-color: lighten(#2F273E, 3%);
+
+//
 $white: #fff;
 $pink: #FD297D;
 
@@ -21,7 +23,7 @@ $pink: #FD297D;
   }
 
   .cell {
-    outline: 1px solid $background-color;
+    outline: 2px solid $background-color;
     cursor: pointer;
     display: flex;
     justify-content: center;
