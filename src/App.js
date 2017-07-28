@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import './App.scss';
+import React, { Component } from 'react'
+import './App.scss'
 
-import MemoryMosaic from './memory-mosaic';
+import MemoryMosaic from './memory-mosaic'
 
 class App extends Component {
 
-
-    render() {
-        return (
-          <div className="App">
-            <MemoryMosaic />
-          </div>
-        );
-    }
+  render() {
+    return (
+      <div className="App">
+        <MemoryMosaic />
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
