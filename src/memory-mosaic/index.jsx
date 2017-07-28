@@ -65,13 +65,11 @@ class MemoryMosaic extends PureComponent {
 
   finishGame = () => this.setState({gameIsLost: true, field: []})
 
-  finishRound = () => {
-    console.log('looser');
+  finishRound = () => (
     this.setState(prev => ({visible: true, lives: prev.lives - 1}), () => (
         setTimeout(this.state.lives > 0 ? this.initGame(this.state.currentLevel) : this.finishGame, 1000)
     ))
-    // setTimeout(this.initGame(this.state.currentLevel), 1000)
-  }
+  )
 
 
   drawField = () => {
