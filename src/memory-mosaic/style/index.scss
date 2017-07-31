@@ -32,7 +32,7 @@ $pink: #FD297D;
     // padding-left: 100px;
     // margin-left: -100px;
 
-    &::before {
+    &.decorated::before {
       z-index: 1;
       content: '';
       display: block;
@@ -44,7 +44,7 @@ $pink: #FD297D;
       background: url('../../assets/images/pat-t.png') no-repeat;
     }
 
-    &::after {
+    &.decorated::after {
       z-index: 1;
       content: '';
       display: block;
@@ -95,11 +95,11 @@ $pink: #FD297D;
     &:last-child {
       border-right: 0;
     }
-    
+
     &:hover, &:focus, &:active {
       // background: $white !important;
     }
-  
+
   }
 
   .lives {

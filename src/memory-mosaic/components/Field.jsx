@@ -1,13 +1,14 @@
-import React from 'react';
+import React from 'react'
+import cn from 'classnames'
 
-import { getHashKey } from '../helpers';
-import { WIN_CELL, WRONG_CELL } from '../constants';
+import { getHashKey } from '../helpers'
+import { WIN_CELL, WRONG_CELL } from '../constants'
 
-import Cell from './Cell';
-import Row from './Row';
+import Cell from './Cell'
+import Row from './Row'
 
-export default ({field=[], visible=false, onCellClick, hash={}}) => (
-  <div className='field'>
+export default ({field=[], visible=false, onCellClick, hash={}, showDecoration=false}) => (
+  <div className={cn({field: true, decorated: showDecoration})}>
     {
       field.map((e, x) =>
 

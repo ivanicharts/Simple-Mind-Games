@@ -128,6 +128,7 @@ class MemoryMosaic extends PureComponent {
                 hash={this.state.hash}
                 field={this.state.field}
                 onCellClick={this.onCellClick}
+                showDecoration={!this.state.ready}
               />
             </div>
             :
