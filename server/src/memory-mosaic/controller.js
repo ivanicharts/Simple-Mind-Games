@@ -9,4 +9,12 @@ export default {
     }
   },
 
+  getField: {
+    method: GET,
+    route: '/field',
+    controller(req, res) {
+      res.send('brand new field!')
+    }
+  },
+
 }
