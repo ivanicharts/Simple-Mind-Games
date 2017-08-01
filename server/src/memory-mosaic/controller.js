@@ -9,7 +9,7 @@ export default {
     }
   },
 
-  getField: {
+  getNewField: {
     method: GET,
     route: '/field',
     controller(req, res) {

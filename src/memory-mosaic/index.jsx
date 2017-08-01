@@ -89,7 +89,6 @@ class MemoryMosaic extends PureComponent {
   startGame = () => this.setState({currentLevel: 0, lives: config.lives}, this.initGame(0))
 
   initGame = (currentLevel) => () => {
-    const { visible } = this.state
     const hash = {}
     const size = levels[currentLevel][FIELD_SIZE]
     const field = new Array(size).fill(0)
@@ -103,7 +102,7 @@ class MemoryMosaic extends PureComponent {
       const y = ~~(Math.random() * size)
       const key = getHashKey(x, y)
 
-      field[x][y] = 1
+      field[x][y] = CELL
 
       if (!(key in hash)) {
         hash[key] = EMPTY_CELL
