@@ -12,6 +12,11 @@ import Field from './components/Field'
 import Lives from './components/Lives'
 import Spinner from 'shared/icons/Spinner'
 
+import TapSound from 'assets/sounds/tap.mp3'
+import LooseSound from 'assets/sounds/looser.mp3'
+import MissSound  from 'assets/sounds/missTap.mp3'
+
+
 import './style/index.scss'
 
 class MemoryMosaic extends PureComponent {
@@ -23,7 +28,10 @@ class MemoryMosaic extends PureComponent {
     currentLevel: 0,
     guessedCells: 0,
     ready: true,
-    gameIsLost: false
+    gameIsLost: false,
+    tapSound: new Audio(TapSound),
+    looseSound: new Audio(LooseSound),
+    missTapSound: new Audio(MissSound)
   }
 
   checkLevelCompletition = () => (
@@ -39,28 +47,35 @@ class MemoryMosaic extends PureComponent {
   )
 
   onCellClick = (x, y) => () => {
-    const { hash } = this.state
+    const { hash, tapSound, missTapSound } = this.state
     const { finishRound, checkLevelCompletition } = this
     const key = getHashKey(x, y)
 
     if (key in hash) {
-      hash[key] === 0 && this.setState(
-        (state) => ({
-          hash: {
-            ...state.hash,
-            [key]: (state.guessedCells + 1) === levels[this.state.currentLevel][CELL_COUNT] ? WIN_CELL : CELL
-          },
-          guessedCells: state.guessedCells + 1,
-        }),
-        checkLevelCompletition
-      )
+     if (hash[key] === 0) {
+      tapSound.play()
+      this.setState(
+          (state) => ({
+           hash: {
+             ...state.hash,
+             [key]: (state.guessedCells + 1) === levels[this.state.currentLevel][CELL_COUNT] ? WIN_CELL : CELL
+           },
+           guessedCells: state.guessedCells + 1,
+          }),
+          checkLevelCompletition
+       )
+      }
     } else {
+      missTapSound.play()
       this.setState((prev) => ({hash: {...prev.hash, [key]: WRONG_CELL}}))
       finishRound()
     }
   }
 
-  finishGame = () => this.setState({gameIsLost: true, field: []})
+  finishGame = () => (
+    this.state.looseSound.play(),
+    this.setState({gameIsLost: true, field: []})
+  )
 
   finishRound = () => (
     this.setState(prev => ({visible: true, lives: prev.lives - 1}), () => (
