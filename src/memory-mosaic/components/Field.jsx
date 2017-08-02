@@ -24,7 +24,6 @@ export default ({field=[], visible=false, onCellClick, hash={}, showDecoration=f
                 last={elem === WIN_CELL}
                 wrong={elem === WRONG_CELL}
                 onClick={!visible && onCellClick(x, y)}
-                onTouchStart={!visible && onCellClick(x, y) || console.log}
                 highlighted={(visible && element) || elem && elem !== WRONG_CELL}
               />
             )
