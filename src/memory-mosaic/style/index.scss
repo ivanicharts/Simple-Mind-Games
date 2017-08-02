@@ -60,8 +60,8 @@ $pink: #FD297D;
       height: 300px;
       width: 300px;
 
-      &::before,
-      &::after {
+      &.decorated::before,
+      &.decorated::after {
         display: none;
       }
     }

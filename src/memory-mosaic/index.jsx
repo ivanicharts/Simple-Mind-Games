@@ -104,10 +104,7 @@ class MemoryMosaic extends PureComponent {
 
       field[x][y] = CELL
 
-      if (!(key in hash)) {
-        hash[key] = EMPTY_CELL
-        i++
-      }
+      if (!(key in hash)) (hash[key] = EMPTY_CELL,  i++)
 
       // Infinite loop protection temporary
       if (i > 250) break
