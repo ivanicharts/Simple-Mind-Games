@@ -1,0 +1,43 @@
+@import url(../../assets/style/variables.scss);
+
+$header-bg: #361647;
+$white: #fff;
+
+.home-wrapper {
+	
+	.home-header {
+		background: $header-bg;
+		color: $white;
+		padding: 5px 30px;
+		background-image: url('../../assets/images/bg.png');
+		min-height: 500px;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		text-align: left;
+
+		.header-content {
+			// max-width: 800px;
+		}
+
+		.header-text {
+			// align-self: flex-start;
+			padding-top: 415px;
+			text-align: center;
+
+			span {	
+				padding: 5px 10px;
+				background: darken($header-bg, 5%);
+			}
+		}
+
+		.logo {
+			// padding: 5px 0;
+
+			margin: 0;
+			font-size: 1.7rem;
+			font-weight: 700;
+			// padding: 0;
+		}
+	}
+}

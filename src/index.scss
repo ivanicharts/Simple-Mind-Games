@@ -1,16 +1,19 @@
-
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  background: #362d47;
+  font-family: 'Roboto Condensed', sans-serif;
+  // background: #362d47;
+  background: #fff;
 }
 
 
 .container {
 	max-width: 850px;
-	margin: 30px auto;
+	margin: auto;
 }
 
 .cursor-pointer {
