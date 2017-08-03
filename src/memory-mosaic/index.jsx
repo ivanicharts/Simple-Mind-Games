@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import logo from 'logo.svg'
-import config, {levels} from 'config/memory-mosaic'
+// import config, {levels} from 'config/memory-mosaic'
+import { MemoryMosaicConfig as config } from 'config'
 import { getHashKey } from './helpers'
 
 import {
@@ -18,6 +19,8 @@ import MissSound  from 'assets/sounds/missTap.mp3'
 
 
 import './style/index.scss'
+
+const { levels } = config
 
 class MemoryMosaic extends PureComponent {
   state = {
