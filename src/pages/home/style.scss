@@ -4,40 +4,40 @@ $header-bg: #361647;
 $white: #fff;
 
 .home-wrapper {
-	
-	.home-header {
-		background: $header-bg;
-		color: $white;
-		padding: 5px 30px;
-		background-image: url('../../assets/images/bg.png');
-		min-height: 500px;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-		text-align: left;
 
-		.header-content {
-			// max-width: 800px;
-		}
+  .home-header {
+    background: $header-bg;
+    color: $white;
+    padding: 20px 50px;
+    background-image: url('../../assets/images/bg.png');
+    min-height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: left;
 
-		.header-text {
-			// align-self: flex-start;
-			padding-top: 415px;
-			text-align: center;
+    .header-content {
+      // max-width: 800px;
+    }
 
-			span {	
-				padding: 5px 10px;
-				background: darken($header-bg, 5%);
-			}
-		}
+    .header-text {
+      // align-self: flex-start;
+      padding-top: 400px;
+      text-align: center;
 
-		.logo {
-			// padding: 5px 0;
+      span {
+        padding: 5px 10px;
+        background: darken($header-bg, 5%);
+      }
+    }
 
-			margin: 0;
-			font-size: 1.7rem;
-			font-weight: 700;
-			// padding: 0;
-		}
-	}
+    .logo {
+      // padding: 5px 0;
+
+      margin: 0;
+      font-size: 1.7rem;
+      font-weight: 700;
+      // padding: 0;
+    }
+  }
 }
