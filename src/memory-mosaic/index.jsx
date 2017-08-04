@@ -89,7 +89,7 @@ class MemoryMosaic extends PureComponent {
     ))
   )
 
-  startGame = () => this.setState({currentLevel: 0, lives: config.lives}, this.initGame(0))
+  startGame = () => this.setState({currentLevel: 0, lives: config.lives}, this.initGame(16))
 
   initGame = (currentLevel) => () => {
     const hash = {}
