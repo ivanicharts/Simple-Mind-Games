@@ -89,6 +89,7 @@ $radius: 3px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      color: darken($item-bg, 55%);
     }
 
     .list-item {
