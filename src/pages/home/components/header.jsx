@@ -19,7 +19,10 @@ const particlesParams = {
 
 export default () => (
   <header className='home-header'>
-    <h1 className='logo'> mind games </h1>
+    <div className='top-nav'>
+    	<h1 className='logo'> mind games </h1>
+    		<a>Sign up</a>
+    </div>
     <div className='header-text'>
     	<Particles 
     		height={400}
