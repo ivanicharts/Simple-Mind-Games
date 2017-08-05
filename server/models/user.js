@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
-import crypto from 'crypto'
+import bcrypt from 'bcrypt'
 
 const Schema = mongoose.Schema;
+
 const UserSchema = new Schema({
   name: { type: String, default: '' },
   email: { type: String, default: '' },
@@ -13,3 +14,11 @@ const UserSchema = new Schema({
     twitter: {}
   }
 });
+
+userSchema.methods.generateHash = password => bcrypt.hash(password, 10, null);
+
+userSchema.methods.validPassword = function(password) {
+  bcrypt.compare(password, this.hashedPassword);
+};
+
+module.exports = mongoose.model('User', UserSchema);
