@@ -32,33 +32,6 @@ $radius: 3px;
 
     .logo {
       position: relative;
-
-      &::before, &::after {
-        width: 85%;
-        height: 70%;
-        position: absolute;
-        content: '';
-        transition: width .3s ease-in-out, height .3s ease-in-out;
-      }
-
-      &::before {
-        top: -7px;
-        left: -10px;
-        border-top: 1px solid $white;
-        border-left: 1px solid $white;
-      }
-
-      &::after {
-        bottom: -7px;
-        right: -10px;
-        border-bottom: 1px solid $white;
-        border-right: 1px solid $white;
-      }
-
-      &:hover::after, &:hover::before {
-        width: 125%;
-        height: 165%;
-      }
     }
 
     .header-text {
@@ -111,7 +84,85 @@ $radius: 3px;
     .item-caption {
       color: darken($item-bg, 35%);
       font-size: 7rem;
-      margin-bottom: 15px;
+      margin-bottom: 35px;
     }
   }
+}
+
+.footer-wrapper {
+  padding: 65px;
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    color: darken($item-bg, 65%);
+  }
+
+  p {
+    font-size: 14px;
+    color: darken($item-bg, 55%);
+  }
+
+  .copyright {
+    font-size: 12px;
+    color: darken($item-bg, 35%);
+  }
+}
+
+
+// MODAL
+.item-info {
+  max-width: 500px;
+  text-align: center;
+  padding: 20px;
+  font-weight: 300;
+
+  .item-caption {
+    color: darken($item-bg, 35%);
+    font-size: 7rem;
+    margin-bottom: 20px;
+  }
+
+  .game-name {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+
+  .game-description {
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+  }
+
+  .text {
+    margin: 0;
+    opacity: .8;
+    font-size: 16px;
+  }
+
+  .block {
+    margin-bottom: 15px;
+  }
+
+  .select-btn {
+    margin: 10px;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, .6);
+    font-size: 14px;
+    font-weight: 400;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+
+    a, a:visited, a:hover, a:active, a:focus {
+      color: #000;
+      text-decoration: none;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, .95);
+    }
+  }
+  // margin: auto;
 }

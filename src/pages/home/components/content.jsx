@@ -1,18 +1,18 @@
 import React, { PureComponent } from 'react'
 import Icon from 'react-fontawesome'
+import { Link } from 'react-router-dom'
 
 import Modal from 'shared/modals/dark'
+import { games } from 'data.json'
 
 export default class extends PureComponent {
 
 	state = {
 		showModal: false,
-    selectedGame: {
-      title: 'Memory Mosaic'
-    }
+    game: {}
 	}
 
-	openHandler = () => this.setState({showModal: true})
+	openHandler = (game) => () => this.setState({game, showModal: true})
 	closeHandler = () => this.setState({showModal: false})
 
 	render = () => (
@@ -25,42 +25,35 @@ export default class extends PureComponent {
 		{
       this.state.showModal &&
 			<Modal onClose={this.closeHandler}>
-        <Icon className='item-caption' name='first-order' />
-        <h1>{this.state.selectedGame.title}</h1>
+        <div className='item-info'>
+          <Icon className='item-caption' name='empire' />
+          <p className='game-name'>{this.state.game.label}</p>
 
-        <p>More Content. Anything goes here</p>
+          <div className='block'>
+            <h4 className='game-description'>Description:</h4>
+            <p className='text'>{this.state.game.description}</p>
+          </div>
+          
+          <div className='block'>
+            <h4 className='game-description'>Rules:</h4>
+            <p className='text'>{this.state.game.rules}</p>
+          </div>
+                  
+          {this.state.game.singleplayer && <Link to='/memory'><button className='select-btn'>Single player</button></Link>}
+          {this.state.game.multiplayer && <button className='select-btn'>Multiplayer</button>}
+        </div>
 	    </Modal>
     }
 
 		<section className='list'>
-			<div onClick={this.openHandler} className='list-item'>
-				<Icon className='item-caption' name='first-order' />
-				<div>Memory Mosaic</div>
-			</div>
-			<div className='list-item'>
-				<Icon className='item-caption' name='first-order' />
-				<div>Memory Mosaic</div>
-			</div>
-			<div className='list-item'>
-				<Icon className='item-caption' name='first-order' />
-				<div>Memory Mosaic</div>
-			</div>
-			<div className='list-item'>
-				<Icon className='item-caption' name='first-order' />
-				<div>Memory Mosaic</div>
-			</div>
-			<div className='list-item'>
-				<Icon className='item-caption' name='first-order' />
-				<div>Memory Mosaic</div>
-			</div>
-			<div className='list-item'>
-				<Icon className='item-caption' name='first-order' />
-				<div>Memory Mosaic</div>
-			</div>
-			<div className='list-item'>
-				<Icon className='item-caption' name='first-order' />
-				<div>Memory Mosaic</div>
-			</div>
+			{
+        games.map((g) => (
+          <div onClick={this.openHandler(g)} className='list-item'>
+            <Icon className='item-caption' name='first-order' />
+            <div>{g.label}</div>
+          </div>
+        ))
+      }
 		</section>
 	</main>
 	)

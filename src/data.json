@@ -1,0 +1,43 @@
+{
+  "games": [
+    {
+      "label": "Memory Mosaic",
+      "name": "memory-mosaic",
+      "categories": ["memory", "brain"],
+      "description": "Memory Mosaic is a great game for improving short-term memory.",
+      "rules": "Memorise position of colored squares on game field. Then indicate position of colored squares.",
+      "singleplayer": true,
+      "multiplayer": false
+    },
+    {
+      "label": "Unavailable",
+      "name": "Unavailable",
+      "categories": ["Unavailable", "brain"],
+      "rules": "Unavailable...."
+    },
+    {
+      "label": "Unavailable",
+      "name": "Unavailable",
+      "categories": ["Unavailable", "brain"],
+      "rules": "Unavailable...."
+    },
+    {
+      "label": "Unavailable",
+      "name": "Unavailable",
+      "categories": ["Unavailable", "brain"],
+      "rules": "Unavailable...."
+    },
+    {
+      "label": "Unavailable",
+      "name": "Unavailable",
+      "categories": ["Unavailable", "brain"],
+      "rules": "Unavailable...."
+    },
+    {
+      "label": "Unavailable",
+      "name": "Unavailable",
+      "categories": ["Unavailable", "brain"],
+      "rules": "Unavailable...."
+    }
+  ]
+}
