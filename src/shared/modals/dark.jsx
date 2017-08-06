@@ -12,7 +12,7 @@ const styles = {
 
 export default ({onClose, children}) => (
   <ModalContainer className='modal-dark' onClose={onClose}>
-    <ModalDialog topOffset={50} style={styles} className='modal-dark' onClose={onClose}>
+    <ModalDialog topOffset={10} style={styles} className='modal-dark' onClose={onClose}>
       {children}
     </ModalDialog>
   </ModalContainer>

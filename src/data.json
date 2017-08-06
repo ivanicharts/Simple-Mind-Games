@@ -7,7 +7,8 @@
       "description": "Memory Mosaic is a great game for improving short-term memory.",
       "rules": "Memorise position of colored squares on game field. Then indicate position of colored squares.",
       "singleplayer": true,
-      "multiplayer": false
+      "multiplayer": false,
+      "image": "assets/images/mosaic-field.png"
     },
     {
       "label": "Unavailable",

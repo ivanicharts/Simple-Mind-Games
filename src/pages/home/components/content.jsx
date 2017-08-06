@@ -26,7 +26,11 @@ export default class extends PureComponent {
       this.state.showModal &&
 			<Modal onClose={this.closeHandler}>
         <div className='item-info'>
-          <Icon className='item-caption' name='empire' />
+          {
+            this.state.game.image ?
+            <img src={require('assets/images/mosaic-field.png')} /> :
+            <Icon className='item-caption' name='empire' />
+          }
           <p className='game-name'>{this.state.game.label}</p>
 
           <div className='block'>

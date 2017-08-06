@@ -166,3 +166,17 @@ $radius: 3px;
   }
   // margin: auto;
 }
+
+.gow-wrapper {
+  background: linear-gradient(to left, #3c224a, #5a2a75);
+  color: #fff;
+  text-align: center;
+  padding: 55px 0;
+  line-height: 1;
+  margin: 20px 0;
+
+  .gow-text {
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+}
