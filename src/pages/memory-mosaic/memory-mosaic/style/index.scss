@@ -11,8 +11,12 @@ $pink: #FD297D;
   min-height: 100vh;
 
   .back-arrow {
-    color: $white;
+    
     padding: 20px 0 0 20px;
+
+    a {
+      color: $white;
+    }
   }
 
   .memory-mosaic-header {
@@ -63,7 +67,7 @@ $pink: #FD297D;
       position: absolute;
       top: -20px;
       left: -100px;
-      background: url('../../assets/images/pat-t.png') no-repeat;
+      background: url('../../../../assets/images/pat-t.png') no-repeat;
     }
 
     &.decorated::after {
@@ -75,7 +79,7 @@ $pink: #FD297D;
       position: absolute;
       bottom: -53px;
       right: -43px;
-      background: url('../../assets/images/patt-bottom.png') no-repeat;
+      background: url('../../../../assets/images/patt-bottom.png') no-repeat;
     }
 
     @media (max-width: 375px) {

@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react'
-import Icon from 'react-fontawesome'
-import { Link } from 'react-router-dom'
 // import config, {levels} from 'config/memory-mosaic'
 import { MemoryMosaicConfig as config } from 'config'
 import { getHashKey } from './helpers'
@@ -121,10 +119,7 @@ class MemoryMosaic extends PureComponent {
 
   render() {
     return (
-      <div className='memory-mosaic-wrapper'>
-        <div className='back-arrow'>
-          <Icon name='arrow-left' />
-        </div>
+      <div className='1'>
         <div className='memory-mosaic-header'>
           <div className='title'>Memory Mosaic</div>
           <div>Level {this.state.currentLevel}</div>
