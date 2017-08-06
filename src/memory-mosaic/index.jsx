@@ -120,10 +120,10 @@ class MemoryMosaic extends PureComponent {
 
   render() {
     return (
-      <div className='App'>
-        <div className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h2>Current level {this.state.currentLevel}</h2>
+      <div className='memory-mosaic-wrapper'>
+        <div className='memory-mosaic-header'>
+          <div className='title'>Memory Mosaic</div>
+          <div>Level {this.state.currentLevel}</div>
         </div>
         <div className='memory-mosaic'>
           {

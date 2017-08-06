@@ -4,4 +4,14 @@ $white: #fff;
 .modal-dark {
   background-color: $bg;
   color: #fff;
+
+  & > a {
+    left: auto;
+    right: 5px;
+    top: 5px;
+
+    circle {
+      fill: transparent;
+    }
+  }
 }
