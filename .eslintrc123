@@ -1,0 +1,15 @@
+{
+  "extends": "react-app",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "import",
+    "react"
+  ],
+  "rules": {
+    "indent": [1, 2],
+    "semi": [1, "never"]
+  }
+}
