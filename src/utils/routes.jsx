@@ -9,6 +9,7 @@ export default () => (
     <Switch>
       <Route exact path={c.HOME} component={p.HOME} />
       <Route path={c.MEMORY} component={p.MemoryMosaic} />
+      <Route path={c.MEMORY_ONLINE} component={p.MemoryMosaicOnline} />
     </Switch>
   </Router>
 )
