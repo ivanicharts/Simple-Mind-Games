@@ -1,0 +1,44 @@
+{
+  "games": [
+    {
+      "label": "Memory Mosaic",
+      "name": "memory-mosaic",
+      "categories": ["memory", "brain"],
+      "description": "Memory Mosaic is a great game for improving short-term memory.",
+      "rules": "Memorise position of colored squares on game field. Then indicate position of colored squares.",
+      "singleplayer": true,
+      "multiplayer": false,
+      "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM4AAADOCAYAAAB2Hz3EAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDozMDM5ZTk5YS0zNTkzLTRhNDMtYmMzZC1hZDdmY2I1Y2Y3YTIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MEZERjA5NEI3QUIyMTFFNzk0RERBNkYyMzA0N0ZBNkMiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MEZERjA5NEE3QUIyMTFFNzk0RERBNkYyMzA0N0ZBNkMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NDZlNTA1YzctZGE0OC05YzQ2LTg2YjctMWJlM2EyY2UyNzZkIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjMwMzllOTlhLTM1OTMtNGE0My1iYzNkLWFkN2ZjYjVjZjdhMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvhL6yUAAATmSURBVHja7N1PbxRlHMDxZ7YLC+3+qYUCkVaMhyYefQcET2L04Nmzb8AYDwSLiYnG92JiIniUeDRq9OLB3sTSVquYtGtN/+34zHaXklK2UyPGPvP5BGhpKMnQ+fb3m+kuredRSEM2eOl4/sfHk60uJHE8tQAIB4QDwgHhgHAA4YBwQDggHBAOIBwQDggHhAPCAYQDwgHhgHBAOIBwQDggHBAOCAcQDggHhAPCAeEAwgHhgHBAOCAcQDggHBAOCAeEAwgHhAPCAeGAcADhgHBAOHDCZHme+1cAEweevnq2upDEyMmn57Lhq6lsA/1ffHxMHLCqgXAA4YBwQDggHBAOIBwQDggHhEPl5PGHR9QLh2M0E4PJxkIYq4d0HksrHJ5yNI1GO3wzORN+6MyEd86eG8RTzYDqzgiOjqYXXjjTCd81L4Z2be9z7cfNRmjF19/rrhZPhwyDZ0GYODCM5sUYzbet/WiGbo5PhQ+a0/trnHBgL4a5Rid8FaOZzA4/VW7EeG6Mn48Dx8SBwXrWDl/HaFrZ6NPkrbOdvZsGwqHq0VxotA9dzw7zoLc7fEfhcKLP/EdO4mPe+SquVWI0P7YuPXE9e9T93k54qftrCPFllW4QCCfFaLJ6mI/XHXc6l8NrZybjm7Jy8cRJExqt8KCIpsSkWY6xzKythLD1Z+WucdyOTi2aWj3cbl4Mrzaa/bdcPz0RbtVOhfc3fhvEk42Iph1+j+vZMyWiWdrdCZfXl2M0G/GvrN7nXxMnsWg+j9NiGM3Q/MRUuDVxfkQ0e1/c/CO+71Tt6Iv8xd52jKaak0Y4CUZzp3kpvBInzEHFqT0/PtVf3x77ekucNI24ni0Xt5xr5a5pZvvrWbeSk0Y4iXXz5ulWuN6YGPnHbsbJ8+7DePJBNO2w1F/Pjp40S7vb8ZqmuuuZcBLULXHxX6TxUfNceHsYT4xmJUZTfj37pdLrmXAS9Gk8oe8Wk6CED5tT4ZPOTLjfvBDXs3KTZvbh3TOnjHBSUUyAeHJf666EL0vEcype9bzRaIZnx+olotkZ3AjYMGmEk2g8O1vh6nq5eMq411/Plq1nwkk9nlp/8vwb8SzGSXNlbdl6JpxqrW1Xu/88np9jNLPrS+6eCcfadpxoniui2RSNcCq+tt3dLhfP4jCaIraaU0M4FV/brhXxHDF57vWsZ8LhsbVtVDw/xbiurFnPhMOha1sRzxcH4inWs+etZ8Jh9Nr2cozns81u6Oa98P3OZpgtJs3WXybNMXk+TgXjeb14JEDxqIHiKc/x96IRDmXiyWMw27v7axzCoVQ9Vfv/A13jgHBAOCAcQDggHBAOCAeEAzxJlvsOwmDiwH8hpe+7PXz0VVLHk60uJHE8+fRcUh8fEweEA8IB4YBwQDiAcEA4IBwQDggHEA4IB4QDwgHhAMIB4YBwQDggHEA4IBwQDggHhAMIB4QDwgHhgHAA4YBwQDggHBAOIBwQDggHhAPCAYQDwgHhgHBAOIBwQDggHDhx6vFnltgxJXU8+fScj4+JA+lMnDyxz2SOx/GYOCAcEA4IBxAOCAeEA8IB4QDCAeGAcEA4IBxAOCAcEA4IB4QDCAeEA8IB4YBwAOGAcEA4IBwQDiAcEA4IB4QDwgGEA8IB4YBwQDiAcEA4IBwQDggHEA4IB4QDwgHhAAf9LcAAA0FdXjxlrEYAAAAASUVORK5CYII="
+    },
+    {
+      "label": "Unavailable",
+      "name": "Unavailable",
+      "categories": ["Unavailable", "brain"],
+      "rules": "Unavailable...."
+    },
+    {
+      "label": "Unavailable",
+      "name": "Unavailable",
+      "categories": ["Unavailable", "brain"],
+      "rules": "Unavailable...."
+    },
+    {
+      "label": "Unavailable",
+      "name": "Unavailable",
+      "categories": ["Unavailable", "brain"],
+      "rules": "Unavailable...."
+    },
+    {
+      "label": "Unavailable",
+      "name": "Unavailable",
+      "categories": ["Unavailable", "brain"],
+      "rules": "Unavailable...."
+    },
+    {
+      "label": "Unavailable",
+      "name": "Unavailable",
+      "categories": ["Unavailable", "brain"],
+      "rules": "Unavailable...."
+    }
+  ]
+}
