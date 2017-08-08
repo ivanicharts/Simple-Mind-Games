@@ -7,15 +7,15 @@ import { games } from 'data.json'
 
 export default class extends PureComponent {
 
-	state = {
-		showModal: false,
+  state = {
+    showModal: false,
     game: {}
-	}
+  }
 
-	openHandler = (game) => () => this.setState({game, showModal: true})
-	closeHandler = () => this.setState({showModal: false})
+  openHandler = (game) => () => this.setState({game, showModal: true})
+  closeHandler = () => this.setState({showModal: false})
 
-	render = () => {
+  render = () => {
     const {game} = this.state
 
     return (
@@ -24,7 +24,7 @@ export default class extends PureComponent {
         Available games:
       </section>
 
-      
+
       {
         this.state.showModal &&
         <Modal onClose={this.closeHandler}>
@@ -40,14 +40,20 @@ export default class extends PureComponent {
               <h4 className='game-description'>Description:</h4>
               <p className='text'>{game.description}</p>
             </div>
-            
+
             <div className='block'>
               <h4 className='game-description'>Rules:</h4>
               <p className='text'>{game.rules}</p>
             </div>
-                    
-            {game.singleplayer && <Link to='/memory'><button className='select-btn'>Single player</button></Link>}
-            {game.multiplayer && <button className='select-btn'>Multiplayer</button>}
+
+            {game.singleplayer &&
+              <Link to={game.singleplayer}>
+                <button className='select-btn'>Single player</button>
+              </Link>}
+            {game.multiplayer &&
+              <Link to={game.multiplayer}>
+                <button className='select-btn'>Multiplayer</button>
+              </Link>}
           </div>
         </Modal>
       }
@@ -57,7 +63,7 @@ export default class extends PureComponent {
           games.map((g) => (
             <div onClick={this.openHandler(g)} className='list-item'>
               {
-                g.image ? 
+                g.image ?
                 <img className='item-caption dark-bg' src={g.image} /> :
                 <Icon className='item-caption' name='first-order' />
               }
