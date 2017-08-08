@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react'
-import Icon from 'react-fontawesome'
-import { Link } from 'react-router-dom'
+
 // import config, {levels} from 'config/memory-mosaic'
 import { MemoryMosaicConfig as config } from 'config'
-import { getHashKey } from './helpers'
+import { getHashKey, generateField } from './helpers'
 
 import {
   WIN_CELL, WRONG_CELL, CELL,
@@ -56,15 +55,15 @@ class MemoryMosaic extends PureComponent {
     const key = getHashKey(x, y)
 
     if (key in hash) {
-     if (hash[key] === 0) {
-      tapSound.play()
-      this.setState(
+      if (hash[key] === 0) {
+        tapSound.play()
+        this.setState(
           (state) => ({
-           hash: {
-             ...state.hash,
-             [key]: (state.guessedCells + 1) === levels[this.state.currentLevel][CELL_COUNT] ? WIN_CELL : CELL
-           },
-           guessedCells: state.guessedCells + 1,
+            hash: {
+              ...state.hash,
+              [key]: (state.guessedCells + 1) === levels[this.state.currentLevel][CELL_COUNT] ? WIN_CELL : CELL
+            },
+            guessedCells: state.guessedCells + 1,
           }),
           checkLevelCompletition
        )
@@ -93,26 +92,10 @@ class MemoryMosaic extends PureComponent {
   startGame = () => this.setState({currentLevel: 0, lives: config.lives}, this.initGame(0))
 
   initGame = (currentLevel) => () => {
-    const hash = {}
-    const size = levels[currentLevel][FIELD_SIZE]
-    const field = new Array(size).fill(0)
+    const fieldSize = levels[currentLevel][FIELD_SIZE]
     const cellCount = levels[currentLevel][CELL_COUNT]
 
-    field.forEach((e, i, a) => (field[i] = new Array(size).fill(0)))
-
-    let i = 0
-    while (i < cellCount) {
-      const x = ~~(Math.random() * size)
-      const y = ~~(Math.random() * size)
-      const key = getHashKey(x, y)
-
-      field[x][y] = CELL
-
-      if (!(key in hash)) (hash[key] = EMPTY_CELL,  i++)
-
-      // Infinite loop protection temporary
-      if (i > 250) break
-    }
+    const {field, hash} = generateField({fieldSize, cellCount, CELL, EMPTY_CELL})
 
     this.setState({field, hash, visible: true, guessedCells: 0, ready: true})
     setTimeout(() => this.setState({ready: false}), config.preloadTime * MS + 100)
@@ -122,9 +105,6 @@ class MemoryMosaic extends PureComponent {
   render() {
     return (
       <div className='memory-mosaic-wrapper'>
-        <div className='back-arrow'>
-          <Icon name='arrow-left' />
-        </div>
         <div className='memory-mosaic-header'>
           <div className='title'>Memory Mosaic</div>
           <div>Level {this.state.currentLevel}</div>
