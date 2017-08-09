@@ -278,7 +278,7 @@ gulp.task('mocha', function (done) {
       }))
       .on('error', function (err) {
         // If an error occurs, save it
-        error = err;
+        // error = err;
       })
       .on('end', function () {
         mongooseService.disconnect(function (err) {
@@ -408,20 +408,12 @@ gulp.task('test', function (done) {
 });
 
 gulp.task('test:server', function (done) {
-  runSequence('env:test', ['copyLocalEnvConfig', 'makeUploadsDir', 'dropdb'], 'lint', 'mocha', done);
+  runSequence('env:test', ['copyLocalEnvConfig', 'makeUploadsDir', 'dropdb'], 'mocha', done);
 });
 
 // Watch all server files for changes & run server tests (test:server) task on changes
 gulp.task('test:server:watch', function (done) {
   runSequence('test:server', 'watch:server:run-tests', done);
-});
-
-gulp.task('test:client', function (done) {
-  runSequence('env:test', 'lint', 'dropdb', 'karma', done);
-});
-
-gulp.task('test:e2e', function (done) {
-  runSequence('env:test', 'lint', 'dropdb', 'nodemon', 'protractor', done);
 });
 
 gulp.task('test:coverage', function (done) {
