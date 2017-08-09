@@ -65,9 +65,11 @@
     "start": "node scripts/start.js",
     "build": "npm run clean && mkdir -p dist && babel src -s -D -d dist",
     "test": "node scripts/test.js --env=jsdom",
-    "server": "gulp --gulpfile server/gulpfile.js",
     "clean": "rimraf dist",
-    "lint": "eslint server"
+    "lint": "eslint server",
+    "server": "gulp --gulpfile server/gulpfile.js",
+    "test:server": "gulp --gulpfile server/gulpfile.js test:server",
+    "test:server:watch": "gulp --gulpfile server/gulpfile.js test:server:watch"
   },
   "jest": {
     "collectCoverageFrom": [
