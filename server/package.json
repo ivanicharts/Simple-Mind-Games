@@ -66,7 +66,6 @@
     "passport-paypal-openidconnect": "~0.1.1",
     "passport-twitter": "~1.0.4",
     "serve-favicon": "~2.4.2",
-    "socket.io": "^2.0.2",
     "validator": "~8.0.0",
     "winston": "^2.3.1",
     "wiredep": "~4.0.0"
@@ -76,6 +75,7 @@
     "del": "^3.0.0",
     "eslint": "~2.2.0",
     "eslint-config-airbnb": "~6.0.2",
+    "expect.js": "^0.3.1",
     "gulp": "~3.9.1",
     "gulp-angular-templatecache": "~2.0.0",
     "gulp-autoprefixer": "~3.1.0",
@@ -109,6 +109,8 @@
     "run-sequence": "~2.0.0",
     "semver": "~5.3.0",
     "should": "~11.2.1",
-    "supertest": "~3.0.0"
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "supertest": "^3.0.0"
   }
 }
