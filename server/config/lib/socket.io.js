@@ -88,6 +88,7 @@ module.exports = function (app, db) {
       mongoStore.get(sessionId, function (err, session) {
         if (err) return next(err, false);
         if (!session) return next(new Error('session was not found for ' + sessionId), false);
+        next(null, true); // Disable passport usage
 
         // Set the Socket.io session information
         socket.request.session = session;
