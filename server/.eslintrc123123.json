@@ -1,0 +1,9 @@
+{
+  "rules": {
+      "indent": [
+          1,
+          2
+      ],
+      "array-callback-return": 1
+  }
+}

@@ -98,6 +98,7 @@ module.exports = function (app, db) {
             if (socket.request.user) {
               next(null, true);
             } else {
+              console.log('User is not authenticated');
               next(new Error('User is not authenticated'), false);
             }
           });
@@ -108,6 +109,7 @@ module.exports = function (app, db) {
 
   // Add an event listener to the 'connection' event
   io.on('connection', function (socket) {
+    console.log('connectiko');
     config.files.server.sockets.forEach(function (socketConfiguration) {
       require(path.resolve(socketConfiguration))(io, socket);
     });

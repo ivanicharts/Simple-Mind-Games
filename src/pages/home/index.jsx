@@ -9,14 +9,14 @@ import './style.scss'
 
 class Home extends PureComponent {
 
-	render = () => (
-		<div className='home-wrapper'>
-			<Header />
-			<Content />
+  render = () => (
+    <div className='home-wrapper'>
+      <Header />
+      <Content />
       <Block />
       <Footer />
-		</div>
-	)
+    </div>
+  )
 }
 
 export default Home
