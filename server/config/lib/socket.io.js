@@ -77,6 +77,7 @@ module.exports = function (app, db) {
 
   // Intercept Socket.io's handshake request
   io.use(function (socket, next) {
+    return next(null, true) // Disable passport usage
     // Use the 'cookie-parser' module to parse the request cookies
     cookieParser(config.sessionSecret)(socket.request, {}, function (err) {
       // Get the session id from the request cookies
