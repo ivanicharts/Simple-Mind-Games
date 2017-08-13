@@ -122,17 +122,17 @@ gulp.task('csslint', function () {
 
 // ESLint JS linting task
 gulp.task('eslint', function () {
-  var assets = _.union(
-    defaultAssets.server.gulpConfig,
-    defaultAssets.server.allJS,
-    testAssets.tests.server,
-    testAssets.tests.client,
-    testAssets.tests.e2e
-  );
+  // var assets = _.union(
+  //   defaultAssets.server.gulpConfig,
+  //   defaultAssets.server.allJS,
+  //   testAssets.tests.server,
+  //   testAssets.tests.client,
+  //   testAssets.tests.e2e
+  // );
 
-  return gulp.src(assets)
-    .pipe(plugins.eslint())
-    .pipe(plugins.eslint.format());
+  // return gulp.src(assets)
+  //   .pipe(plugins.eslint())
+  //   .pipe(plugins.eslint.format());
 });
 
 // JS minifying task

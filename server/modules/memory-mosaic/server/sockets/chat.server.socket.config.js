@@ -1,27 +1,25 @@
 'use strict';
 
+// import config, { levels } from '../../../../../config/memory-mosaic'
+const config = require('../../../../../config/app/memory-mosaic')
+const levels = config.levels
+const c = config.c
+const { generateField } = require('../../../../../config/app/helpers')
+
+let gameData = {}
+
 const userNames = {
 
 }
 
+console.log('levels', levels)
+
+
+let currentLevel = 0
+
+
 // Create the chat configuration
 module.exports = function (io, socket) {
-  // Emit the status event when a new socket client is connected
-  // io.emit('chatMessage', {
-  //   type: 'status',
-  //   text: 'Is now connected',
-  //   created: Date.now(),
-  //   profileImageURL: socket.request.user.profileImageURL,
-  //   username: socket.request.user.username
-  // })
-
-  io.emit('chatMessage', {
-    type: 'status',
-    text: 'Is now connected',
-    created: Date.now(),
-    // profileImageURL: socket.request.user.profileImageURL,
-    // username: socket.request.user.username
-  });
 
   socket.on('join room', function (user) {
     console.log('tries to join ' + user, socket.id)
@@ -32,36 +30,71 @@ module.exports = function (io, socket) {
 
     console.log('players: ', socket.clients)
 
-      userNames[socket.id] = socket.name
-      io.to('mm-1').emit('joined player', JSON.stringify(userNames));
+      userNames[socket.id] = {
+        name: socket.name,
+        lives: 3,
+        level: currentLevel
+      }
+      io.to('mm-1').emit('joined player', JSON.stringify(Object.values(userNames).map(e => ({name: e.name, lives: e.lives}))));
      
       if (socket.adapter.rooms['mm-1'].length >= 2) {
-        io.to('mm-1').emit('start game', {field: 132})
+        gameData = initGame(currentLevel)
+        io.to('mm-1').emit('start game', Object.assign({currentLevel}, userNames[socket.id], gameData))
       } 
     
     })
 
   })
 
-  // Send a chat messages to all connected sockets when a message is received
-  socket.on('chatMessage', function (message) {
-    message.type = 'message';
-    message.created = Date.now();
-    // message.profileImageURL = socket.request.user.profileImageURL;
-    // message.username = socket.request.user.username;
+  socket.on('level success', () => {
+    userNames[socket.id].level = currentLevel + 1
 
-    // Emit the 'chatMessage' event
-    io.emit('chatMessage', message);
-  });
+    checkGameState(socket, io)
+  })
 
-  socket.on('connectMess', (data) => {
-    console.log(data);
+  socket.on('level fail', () => {
+    userNames[socket.id].level = currentLevel + 1
+    userNames[socket.id].lives = userNames[socket.id].lives - 1
+    checkGameState(socket, io)
   })
 
   // Emit the status event when a socket client is disconnected
   socket.on('disconnect', function () {
     delete userNames[socket.id]
     console.log('disconnected')
-    io.to('mm-1').emit('joined player', JSON.stringify(userNames));
+    io.to('mm-1').emit('joined player', JSON.stringify(
+      Object.values(userNames).map(e => ({name: e.name, lives: e.lives}))
+    ));
   });
 };
+
+function checkGameState (socket, io) {
+  console.log('check', userNames)
+  for (let key in userNames) {
+    if (userNames[key].level <= currentLevel) return false
+  }
+
+  console.log('new game')
+  ++currentLevel
+  io.to('mm-1').emit('joined player', JSON.stringify(Object.values(userNames).map(e => ({name: e.name, lives: e.lives}))));
+  io.to('mm-1').emit('start game', Object.assign
+    (
+      { currentLevel },
+      userNames[socket.id],
+      initGame(currentLevel)
+    )
+  )
+}
+
+function initGame (currentLevel) {
+  const fieldSize = levels[currentLevel][c.FIELD_SIZE]
+  const cellCount = levels[currentLevel][c.CELL_COUNT]
+  const gameData = generateField({
+    fieldSize, 
+    cellCount, 
+    CELL: c.CELL, 
+    'EMPTY_CELL': c.EMPTY_CELL
+  })
+
+  return gameData
+}
