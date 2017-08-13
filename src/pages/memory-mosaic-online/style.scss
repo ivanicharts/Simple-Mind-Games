@@ -7,9 +7,21 @@
 
   .players-title {
     font-size: 2rem;
+    margin-bottom: 20px;
   }
 
   .players {
     color: #fff;
+  }
+
+  .name-input {
+    margin: 30px;
+
+    input {
+      padding: 5px 10px;
+      border: 0;
+      outline: 0;
+      height: 35px;
+    }
   }
 }

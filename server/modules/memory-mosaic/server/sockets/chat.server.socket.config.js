@@ -37,7 +37,7 @@ module.exports = function (io, socket) {
       }
       io.to('mm-1').emit('joined player', JSON.stringify(Object.values(userNames).map(e => ({name: e.name, lives: e.lives}))));
      
-      if (socket.adapter.rooms['mm-1'].length >= 2) {
+      if (socket.adapter.rooms['mm-1'].length >= 3) {
         gameData = initGame(currentLevel)
         io.to('mm-1').emit('start game', Object.assign({currentLevel}, userNames[socket.id], gameData))
       } 
@@ -62,9 +62,7 @@ module.exports = function (io, socket) {
   socket.on('disconnect', function () {
     delete userNames[socket.id]
     console.log('disconnected')
-    io.to('mm-1').emit('joined player', JSON.stringify(
-      Object.values(userNames).map(e => ({name: e.name, lives: e.lives}))
-    ));
+    io.to('mm-1').emit('joined player', sendPlayers(userNames));
   });
 };
 
@@ -72,6 +70,12 @@ function checkGameState (socket, io) {
   console.log('check', userNames)
   for (let key in userNames) {
     if (userNames[key].level <= currentLevel) return false
+    if (userNames[key].lives <= 0) {
+      io.to(key).emit('game over')
+      delete userNames[key]
+      if (socket.id === key) socket.leave('mm-1')
+      io.to('mm-1').emit('joined player', sendPlayers(userNames))
+    }
   }
 
   console.log('new game')
@@ -97,4 +101,8 @@ function initGame (currentLevel) {
   })
 
   return gameData
+}
+
+function sendPlayers (players) {
+  return JSON.stringify(Object.values(players).map(e => ({name: e.name, lives: e.lives})))
 }
