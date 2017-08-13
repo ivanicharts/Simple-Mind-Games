@@ -18,14 +18,14 @@ function seedDB() {
 
 module.exports.init = function init(callback) {
   mongooseService.connect(function (db) {
-    // Initialize Models
     mongooseService.loadModels(seedDB);
 
     // Initialize express
     var app = express.init(db);
     if (callback) callback(app, db, config);
 
-  });
+  }); // Initialize Models
+   
 };
 
 module.exports.start = function start(callback) {

@@ -5,3 +5,4 @@
  */
 var app = require('./config/lib/app');
 var server = app.start();
+console.log(server, app, 'port')
