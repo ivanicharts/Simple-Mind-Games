@@ -25,10 +25,10 @@ const { levels } = config
 class MemoryMosaic extends PureComponent {
   state = {
     visible: false,
-    lives: config.lives,
+    lives: this.props.lives,
     hash: {},
     field: [],
-    currentLevel: 0,
+    currentLevel: this.props.currentLevel,
     guessedCells: 0,
     ready: true,
     gameIsLost: false,
@@ -39,13 +39,18 @@ class MemoryMosaic extends PureComponent {
 
   checkLevelCompletition = () => (
     (this.state.guessedCells === levels[this.state.currentLevel][CELL_COUNT]) &&
-    setTimeout(this.startNewLevel, config.timeBeforeNewLevelStart * MS)
+    setTimeout(this.onLevelSuccess, config.timeBeforeNewLevelStart * MS)
   )
 
-  startNewLevel = () => (
-    this.initGame(this.state.currentLevel + 1)(),
+  onLevelSuccess = () => {
+    this.setState({ready: false})
+    this.props.onLevelSuccess()
+  }
+
+  startNewLevel = ({level, field, hash}) => (
+    this.initGame({hash, field})(),
     this.setState(
-      (state) => ({currentLevel: state.currentLevel + 1})
+      (state) => ({currentLevel: level})
     )
   )
 
@@ -83,23 +88,33 @@ class MemoryMosaic extends PureComponent {
   finishRound = () => (
     this.setState(prev => ({visible: true, lives: prev.lives - 1}), () => (
         setTimeout(
-          this.state.lives > 0 ? this.initGame(this.state.currentLevel) :
-          this.finishGame, config.timeBeforeNewLevelStart * MS
+          // this.props.lives > 0 ? this.initGame(this.state.currentLevel) :
+          // this.props.onLevelFail()
+          this.props.onLevelFail, config.timeBeforeNewLevelStart * MS
         )
     ))
   )
 
   startGame = () => this.setState({currentLevel: 0, lives: config.lives}, this.initGame(0))
 
-  initGame = (currentLevel) => () => {
-    const fieldSize = levels[currentLevel][FIELD_SIZE]
-    const cellCount = levels[currentLevel][CELL_COUNT]
+  initGame = ({field, hash}) => () => {
+    // const fieldSize = levels[currentLevel][FIELD_SIZE]
+    // const cellCount = levels[currentLevel][CELL_COUNT]
+    // const {field, hash} = generateField({fieldSize, cellCount, CELL, EMPTY_CELL})
 
-    const {field, hash} = generateField({fieldSize, cellCount, CELL, EMPTY_CELL})
+    console.log('try to start game', field, hash)
 
     this.setState({field, hash, visible: true, guessedCells: 0, ready: true})
     setTimeout(() => this.setState({ready: false}), config.preloadTime * MS + 100)
     setTimeout(() => this.setState({visible: false}), config.preloadTime * MS + config.visibleTime * MS)
+  }
+
+  componentDidMount = () => {
+    this.initGame(this.props)()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.startNewLevel(nextProps)
   }
 
   render() {

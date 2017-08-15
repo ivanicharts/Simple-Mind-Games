@@ -122,17 +122,17 @@ gulp.task('csslint', function () {
 
 // ESLint JS linting task
 gulp.task('eslint', function () {
-  var assets = _.union(
-    defaultAssets.server.gulpConfig,
-    defaultAssets.server.allJS,
-    testAssets.tests.server,
-    testAssets.tests.client,
-    testAssets.tests.e2e
-  );
+  // var assets = _.union(
+  //   defaultAssets.server.gulpConfig,
+  //   defaultAssets.server.allJS,
+  //   testAssets.tests.server,
+  //   testAssets.tests.client,
+  //   testAssets.tests.e2e
+  // );
 
-  return gulp.src(assets)
-    .pipe(plugins.eslint())
-    .pipe(plugins.eslint.format());
+  // return gulp.src(assets)
+  //   .pipe(plugins.eslint())
+  //   .pipe(plugins.eslint.format());
 });
 
 // JS minifying task
@@ -394,7 +394,7 @@ gulp.task('protractor', ['webdriver_update'], function () {
 
 // Lint CSS and JavaScript files.
 gulp.task('lint', function (done) {
-  runSequence(['eslint'], done);
+  // runSequence(['eslint'], done);
 });
 
 // Lint project files and minify them into two production files.
@@ -422,7 +422,7 @@ gulp.task('test:coverage', function (done) {
 
 // Run the project in development mode with node debugger enabled
 gulp.task('default', function (done) {
-  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], 'lint', ['nodemon', 'watch'], done);
+  runSequence('env:dev', ['copyLocalEnvConfig', 'makeUploadsDir'], ['nodemon', 'watch'], done);
 });
 
 // Run the project in production mode

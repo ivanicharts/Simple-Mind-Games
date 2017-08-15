@@ -110,7 +110,8 @@ module.exports = function (app, db) {
 
   // Add an event listener to the 'connection' event
   io.on('connection', function (socket) {
-    console.log('connectiko');
+    console.log('connectiko', Object.keys(socket.rooms));
+    // socket.join('mm-1', () => console.log('roomsL ', socket.adapter.rooms))
     config.files.server.sockets.forEach(function (socketConfiguration) {
       require(path.resolve(socketConfiguration))(io, socket);
     });

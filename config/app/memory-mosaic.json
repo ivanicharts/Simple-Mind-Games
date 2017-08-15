@@ -32,5 +32,13 @@
     { "fieldSize": 7, "cellCount": 6 },
     { "fieldSize": 7, "cellCount": 6 },
     { "fieldSize": 8, "cellCount": 7 }
-  ]
+  ],
+  "c": {
+    "WRONG_CELL": 3,
+    "WIN_CELL" : 2,
+    "CELL" : 1,
+    "EMPTY_CELL" : 0,
+    "CELL_COUNT": "cellCount",
+    "FIELD_SIZE": "fieldSize"
+  }
 }
