@@ -16,7 +16,7 @@ socket.on('connect', msg => (console.log(msg, 'asd')))
 class App extends Component {
 
   render = () => (
-    <SocketProvider>
+    <SocketProvider socket={socket}>
       <Routes />
     </SocketProvider>
   )
