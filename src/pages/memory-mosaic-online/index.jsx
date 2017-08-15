@@ -16,7 +16,8 @@ class MMOnline extends PureComponent {
     joined: false,
     gameIsStarted: false,
     gameData: {},
-    gameIsOver: false
+    gameIsOver: false,
+    overMessage: ''
   }
 
   componentDidMount = () => {
@@ -30,10 +31,15 @@ class MMOnline extends PureComponent {
       console.log('joined new player ' + players)
     })
 
-    this.props.socket.on('game over', () => {
-      console.log('GAME OVER')
-      this.setState({joined: false, gameIsOver: true, gameIsStarted: false})
+    this.props.socket.on('game over', (overMessage) => {
+      console.log('GAME OVER', overMessage)
+      this.setState({overMessage, joined: false, gameIsOver: true, gameIsStarted: false})
     })
+
+    // this.props.socket.on('won', () => {
+    //   console.log('WINNER')
+    //   this.setState({joined: false, gameIsOver: true, gameIsStarted: false})
+    // })
   }
 
   componentWillUnmount = () => {
@@ -50,7 +56,7 @@ class MMOnline extends PureComponent {
   // this.props.socket.emit('join room', 'me')
 
   render = () => {
-    const { joined, players, gameIsStarted, gameData, gameIsOver } = this.state
+    const { joined, players, gameIsStarted, gameData, gameIsOver, overMessage } = this.state
 
     return (
       <div className='memory-mosaic-wrapper mosaic-memory-online'>
@@ -73,7 +79,7 @@ class MMOnline extends PureComponent {
             gameIsOver ?
 
             <div className='players'>
-              <div className='players-title'>You have lost.</div>
+              <div className='players-title'>{overMessage}</div>
             </div> :
 
             <div className=''>
@@ -93,7 +99,6 @@ class MMOnline extends PureComponent {
           /> 
         }
 
-        <div onClick={() => this.setState({players: [...this.state.players]})}>check</div>
       </div>
     )
   }

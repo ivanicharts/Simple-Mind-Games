@@ -38,8 +38,8 @@ module.exports = function (io, socket) {
       io.to('mm-1').emit('joined player', JSON.stringify(Object.values(userNames).map(e => ({name: e.name, lives: e.lives}))));
      
       if (socket.adapter.rooms['mm-1'].length >= 3) {
-        gameData = initGame(currentLevel)
-        io.to('mm-1').emit('start game', Object.assign({currentLevel}, userNames[socket.id], gameData))
+        gameData = initGame(0)
+        io.to('mm-1').emit('start game', Object.assign({currentLevel: 0}, userNames[socket.id], gameData))
       } 
     
     })
@@ -70,9 +70,12 @@ function checkGameState (socket, io) {
   console.log('check', userNames)
   let flag = true
   for (let key in userNames) {
+    if (Object.keys(userNames).length === 1)
+      return io.to(key).emit('game over', 'You have won.')
+    
     if (userNames[key].level <= currentLevel) flag = false
     if (userNames[key].lives <= 0) {
-      io.to(key).emit('game over')
+      io.to(key).emit('game over', 'You have lost.')
       console.log('GAME IS OVER FOR ', userNames[socket.id])
       console.log('id, key', socket.id, key)
       if (socket.id === key) {
